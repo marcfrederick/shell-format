@@ -8,14 +8,14 @@ SETTINGS_FILE_NAME = "shell_format.sublime-settings"
 
 
 class BeautifyLatexOnSave(sublime_plugin.EventListener):
-    def on_pre_save(self, view):
+    def on_pre_save(self, view: sublime.View) -> None:
         self.config = sublime.load_settings(SETTINGS_FILE_NAME)
         if self.config.get("run_on_save"):
             view.run_command("shell_format")
 
 
 class ShellFormatCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
+    def run(self, edit: sublime.Edit) -> None:
         self.config = sublime.load_settings(SETTINGS_FILE_NAME)
         self.vars = self.view.window().extract_variables()
 
@@ -24,7 +24,7 @@ class ShellFormatCommand(sublime_plugin.TextCommand):
 
         self.reformat(edit)
 
-    def get_command_line(self):
+    def get_command_line(self) -> list:
         cmd = self.config.get("shfmt_command", "shfmt")
         cmd = os.path.expanduser(cmd)
         cmd = sublime.expand_variables(cmd, self.vars)
@@ -55,7 +55,7 @@ class ShellFormatCommand(sublime_plugin.TextCommand):
 
         return cmd
 
-    def run_shfmt(self, cmd, cwd, content):
+    def run_shfmt(self, cmd: list, cwd: str, content: str) -> tuple:
         p = subprocess.Popen(
             cmd,
             cwd=cwd,
@@ -66,7 +66,7 @@ class ShellFormatCommand(sublime_plugin.TextCommand):
         out, err = p.communicate(input=content.encode("utf8"))
         return p.returncode, out, err
 
-    def reformat(self, edit):
+    def reformat(self, edit: sublime.Edit) -> None:
         buffer = sublime.Region(0, self.view.size())
 
         cmd = self.get_command_line()
@@ -80,7 +80,7 @@ class ShellFormatCommand(sublime_plugin.TextCommand):
             sublime.error_message(err.decode("utf8"))
 
     @property
-    def is_shell_file(self):
+    def is_shell_file(self) -> bool:
         legal_scopes = self.config.get("scopes", ["source.shell.bash"])
         actual_scopes = self.view.scope_name(0).split()
         return bool(set(legal_scopes) & set(actual_scopes))
