@@ -18,6 +18,13 @@
                                 "args": {
                                     "base_file": "${packages}/shell_format/shell_format.sublime-settings"
                                 },
+                            },
+                            {
+                                "caption": "Key Bindings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/shell_format/Default ($platform).sublime-keymap"
+                                },
                             }
                         ]
                     }
