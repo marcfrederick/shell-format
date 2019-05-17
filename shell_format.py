@@ -6,13 +6,11 @@ import sublime_plugin
 
 SETTINGS_FILE_NAME = "shell_format.sublime-settings"
 
-
 class BeautifyLatexOnSave(sublime_plugin.EventListener):
     def on_pre_save(self, view: sublime.View) -> None:
         self.config = sublime.load_settings(SETTINGS_FILE_NAME)
         if self.config.get("run_on_save"):
             view.run_command("shell_format")
-
 
 class ShellFormatCommand(sublime_plugin.TextCommand):
     def run(self, edit: sublime.Edit) -> None:
