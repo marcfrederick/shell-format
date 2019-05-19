@@ -1,6 +1,6 @@
 [
     {
-        "caption": "shell format: Format File",
+        "caption": "ShellFormat: Format File",
         "command": "shell_format"
     }
 ]

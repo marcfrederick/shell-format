@@ -10,20 +10,20 @@
                 "id": "package-settings",
                 "children": [
                     {
-                        "caption": "shell format",
+                        "caption": "ShellFormat",
                         "children": [
                             {
                                 "caption": "Settings",
                                 "command": "edit_settings",
                                 "args": {
-                                    "base_file": "${packages}/shell_format/shell_format.sublime-settings"
+                                    "base_file": "${packages}/ShellFormat/shell_format.sublime-settings"
                                 },
                             },
                             {
                                 "caption": "Key Bindings",
                                 "command": "edit_settings",
                                 "args": {
-                                    "base_file": "${packages}/shell_format/Default ($platform).sublime-keymap"
+                                    "base_file": "${packages}/ShellFormat/Default ($platform).sublime-keymap"
                                 },
                             }
                         ]

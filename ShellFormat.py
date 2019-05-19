@@ -4,7 +4,7 @@ import subprocess
 import sublime
 import sublime_plugin
 
-SETTINGS_FILE_NAME = "shell_format.sublime-settings"
+SETTINGS_FILE_NAME = "ShellFormat.sublime-settings"
 
 class BeautifyLatexOnSave(sublime_plugin.EventListener):
     def on_pre_save(self, view: sublime.View) -> None:
